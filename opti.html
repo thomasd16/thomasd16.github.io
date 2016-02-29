@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title>Everything Javascript</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<div class="content home">
+		<div class="title">Welcome</div>
+		<div class="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="opti.html">Javascript optimization</a></li>
+				<li><a href="asm.html">Asm.js</a></li>
+				<li><a href="snake.html">Snake in 20 minutes</a></li>
+				<li><a href="quirks.html">Javascript quirks</a></li>
+			</ul>
+		</div>
+		<p>
+			Javascript optomization seems to be all the rage in this day and age. 
+			However raw javascript engine speed isn't as important as many people believe.
+			More often than not the reason for slow webpages is not poor javascript performance but bad event handeling and DOM interactions.
+			Unless you are <a href="http://s-macke.github.io/jor1k/demos/main.html?user=rivnhBWmTS" title="javascript pc emulator">awesome</a> or <a href="http://runtimejs.org/">deranged</a> raw javascript performance isn't a big issue</a>.
+		</p>
+		<p> 
+			However there are a few things that can make websites run smoother.
+		<p>
+		<pre class="prettyprint lang-html">
+	&lt;!-- include scripts after content this allows for basic page to draw before script is loaded--&gt;
+	&lt;!-- if that is not an option use the async tag to allow the page to draw before loading the script--&gt;
+	&ltscript src="demo_async.js" async&gt;&lt;/script&gt;
+		</pre>
+		
+	</div class="content">
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+</body>
+</html>
+

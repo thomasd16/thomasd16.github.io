@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<title>Javascript Quirks</title>
+	<link rel="stylesheet" href="main.css">
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content home">
+		<div class="title">Javascript Quirks</div>
+		<div class="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="asm.html">Asm.js</a></li>
+				<li><a href="snake.html">Snake in 20 minutes</a></li>
+				<li><a href="quirks.html">Javascript quirks</a></li>
+				<li><a href="links.html">External projects</a></li>
+			</ul>
+		</div>
+		<p>Everyone has heard the term anonymous functions vs named functions in javascript however this is 
+		a bad way of differentiating them. A better way would be to call them function statements and function literan;
+<pre class="prettyprint lang-js">
+function bar() {} //function statement
+//statement doesent need to have trailing semicolon
+
+var foo = (function () {});//function literal
+//notice the trailing semicolon
+//wrapping the function in semicolons is not necessary
+//but it is good practice</pre>
+<p>While appearing similar and functionally looking similar the two act wildly different.
+One of them happens to violate causality while the other behaves as a data type.
+<pre class="prettyprint lang-js">
+if(false) {
+	//defining a function via statement within a loop or condition
+	//is illegal in the ECMAScript definition but most browsers will allow you to do so 
+	function foo() {
+		console.log("foo got called before it was defined");
+	}
+}
+foo();// yep it works</pre>
+
+<p> It gets even wierder </p>
+<pre class="prettyprint lang-js">
+foo(); //works!
+bar(); //Errors
+var bar = (function () {
+	console.log("bar got called before it was defined");
+});
+function foo() {
+	console.log("foo got called before it was defined");
+}</pre>
+<p> Calling literal functions anonymous functions is wrong because they can have names however the name can only be referenced from inside the function itself</p>
+<pre class="prettyprint lang-js">
+var foo = (function bar() {
+	console.log(typeof bar); //logs "function";
+});
+console.log(typeof foo);//logs "function";
+console.log(typeof bar);//logs "undefined";
+</pre>
+	</div>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</body>
+</html>

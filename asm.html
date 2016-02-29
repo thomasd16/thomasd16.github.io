@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+	<title>Asm.js the javascript compiler target</title>
+	<link rel="stylesheet" href="main.css">
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content home">
+		<div class="title">Asm.js the javascript compiler target</div>
+		<div class="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="asm.html">Asm.js</a></li>
+				<li><a href="snake.html">Snake in 20 minutes</a></li>
+				<li><a href="quirks.html">Javascript quirks</a></li>
+				<li><a href="links.html">External projects</a></li>
+			</ul>
+		</div>
+		<p> Asm.js is a subset of javascript designed to allow for near native code execution by adding type hints to normal javascript.
+			The basic idea of javascript is to allow for Ahead Of Time compilation of scripts the following is an example of the very basics of asm.js.
+			Although Asm.js can be written by hand it is intended to be compiled from C using tools like <a href="http://kripken.github.io/emscripten-site/">emscripten</a></p>
+		<pre class="prettyprint lang-c">
+/* This is the C file to be converted to asm.js */
+int add(int a, int b) {
+	return int a + b;
+}</pre>
+<br />
+		<pre class="prettyprint lang-js">
+/*this is the basic asm.js equivalent to the above C function */
+function add(a, b) {
+	a = a|0; //Applying the OR operator on variables forces them to be an intiger
+	b = b|0;
+	return a + b | 0;//OR operator specifies return type as int 
+}</pre>
+<p> Asm.js also allows emulation of a heap and pointers using typed arrays </p>
+<pre class="prettyprint lang-c">
+int addPointers(int *a, int *b) {
+	return *a + *b;
+}</pre>
+<br />
+<pre class="prettyprint lang-js">
+var MEM32 = new Int32Array(arrayBuffer);
+function addPointers(a,b) {
+	a = a|0;
+	b = b|0;
+	return MEM32[a] + MEM32[b] | 0;
+}</pre>
+<br />
+	<h4>What asm.js doesn't support</h4>
+	<ul>
+		<li>Pointers to variables stored in the stack</li>
+		<li>Loading of any library's including Lib C</li>
+		<li>Goto Instructions</li>
+	</ul>
+	<p>
+		Asm.js does create sizable performance boosts. However v8 and IonMonkey are already quite good at optimizing normal javascript as such asm.js is relay useful for 
+		including large code bases in your website. (decompression engines, rendering engines ect) Below is the performace increaces in computing the Mandelbrot set using asm.js vs native js.
+		Source Mozilla</p>
+	<a href="https://blog.mozilla.org/javascript/2015/03/10/state-of-simd-js-performance-in-firefox/"><img src="images/asm.png" alt="asm.js performance comparason"/></a>
+	<p>While a novel idea Asm.js Lacks practicality. Bringing along libC functions including memory management is wierd seeing javascript already has that functionality embedded. 
+	Furtheremore Dispite being almost 2 years old there haven't been any major industrial uses for the language. 
+	With javascript already performing on levels close to java and C# efforts should be made to create new large code bases instead of porting existing ones to javascript via compilers.</p>
+	</div>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+@media screen {
+	body {
+		background-color: white;
+	}
+	* {
+		margin: 0px;
+	}
+	div.title {
+		width: 1024px;
+		background-color: #222288;
+		color: white;
+		text-align: center;
+		font-weight: bold;
+		font-size: 24pt;
+		border-bottom: 3px solid black;
+	}
+	div.nav {
+		width: 1024px;
+		background-color: #222288;
+		text-align: center;
+	}
+	div.nav ul{
+	 list-style: square;
+	 color: white;
+	 float:center;
+	 display:inline;
+	}
+	div.nav li{
+		font-weight: bold;
+		font-size: 16pt;
+		display: inline;
+		margin-left: 3px; 
+	}
+	div.nav li:after{
+		content: " |";
+		font-weight:bold;
+		display:inline;
+	}
+	div.nav li:last-child:after{
+		margin-left: 3px;
+		margin-right: 3px;
+		content:"";
+	}
+	div.nav a{
+		color: white;
+	}
+	div.nav a:visited{
+		color: #BBBBBB;
+	}
+	div.content{
+		top: 20px;
+		position: relative;
+		margin: auto;
+		width: 1024px;
+		border: 4px solid #0000FF;
+	}
+
+	p {
+		text-indent: 30px;
+		font-size: 14pt;
+		line-height:20pt;
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+
+	pre {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	/*begin home page styles*/
+	figure {
+		text-align: right;
+		float: right;
+		border: 1px solid black;
+		
+	}
+	figcaption {
+		margin-right: 20px;
+		padding-bottom: 20px;
+	}
+	/*snake*/
+	table.snake {
+		border:5px solid black;
+	}
+	table.snake td {
+		width: 15px;
+		height: 15px;
+	}
+
+	.blank {
+		background-color: white;
+	}
+	.full {
+		background-color: black;
+	}
+	.apple {
+		background-image: url(images/apple.jpg);
+	}
+	#game{
+		margin-left: 300px;
+		position: relative;
+		text-align:center;
+	}
+	#start{
+		margin-left: 300px;
+		margin-bottom: 50px;
+	}
+	#get {
+		float: right;
+	}
+	.get li {
+		font-size: 24px;
+	}
+}
+@media print {
+	div.title {
+		text-align: center;
+		font-weight: bold;
+		font-size: 16pt;
+	}
+	div.nav {
+		display:none;
+	}
+	#game{
+		display:none;
+	}
+}
