@@ -17,8 +17,8 @@
 				<li><a href="links.html">External projects</a></li>
 			</ul>
 		</div>
-		<p>Everyone has heard the term anonymous functions vs named functions in javascript however this is 
-		a bad way of differentiating them. A better way would be to call them function statements and function literan;
+		<p>Everyone has heard the term anonymous functions vs named functions in javascript. However this is 
+		a bad way of differentiating them. A better way would be to call them function statements and function literals.
 <pre class="prettyprint lang-js">
 function bar() {} //function statement
 //statement doesent need to have trailing semicolon
@@ -27,7 +27,7 @@ var foo = (function () {});//function literal
 //notice the trailing semicolon
 //wrapping the function in semicolons is not necessary
 //but it is good practice</pre>
-<p>While appearing similar and functionally looking similar the two act wildly different.
+<p>While appearing similar and functionally looking similar, the two act wildly different.
 One of them happens to violate causality while the other behaves as a data type.
 <pre class="prettyprint lang-js">
 if(false) {
@@ -39,7 +39,7 @@ if(false) {
 }
 foo();// yep it works</pre>
 
-<p> It gets even wierder </p>
+<p> The behavior gets even stranger </p>
 <pre class="prettyprint lang-js">
 foo(); //works!
 bar(); //Errors
@@ -49,7 +49,7 @@ var bar = (function () {
 function foo() {
 	console.log("foo got called before it was defined");
 }</pre>
-<p> Calling literal functions anonymous functions is wrong because they can have names however the name can only be referenced from inside the function itself</p>
+<p> Calling literal functions anonymous functions is wrong because they can have names. However the name can only be referenced from inside the function itself</p>
 <pre class="prettyprint lang-js">
 var foo = (function bar() {
 	console.log(typeof bar); //logs "function";
