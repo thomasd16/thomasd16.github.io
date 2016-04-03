@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<title> Event Queue Demo</title>
+</head>
+<body>
+<table>
+<tr>
+<th> Event value </th><th> Event Timeout</th><th>Event Process Time</th>
+</tr>
+<tr>
+<td><input type="text" id="evalue" /></td>
+<td><input type="text" id="etimeout" /></td>
+<td><input type="text" id="eprocess" /></td>
+<td><button id="launch">Launch Event</button></td>
+</tr>
+</table>
+<button id="tick"> 
+Tick
+</button>
+<h3> Workers</h3>
+<ul id="workers"> 
+</ul>
+<h3> Event Queue</h3>
+<ul id="eventqueue">
+
+</ul> 
+<h3>Running Process</h3>
+<h4 id="process"></h3>
+
+
+<script type="text/javascript">
+var evalue = document.getElementById("evalue");
+var etimeout = document.getElementById("etimeout");
+var eprocessv = document.getElementById("eprocess");
+var eeventqueue = document.getElementById("eventqueue");
+var eworkers = document.getElementById("workers");
+var eprocess = document.getElementById("process");
+var elaunch = document.getElementById("launch");
+var etick = document.getElementById("tick");
+
+(function () {
+	var workers = [];
+	var eventQueue = [];
+	var process ={};
+	function fireEvent() {
+		var value = evalue.value,
+		timeout = Number(etimeout.value),
+		process = Number(eprocessv.value);
+		workers.push({
+			val: value,
+			timeout: timeout, 
+			process: process
+		});
+	}
+	
+	function tick() {
+		console.log(process.process);
+		if(!process.val || !process.process--)
+			process = eventQueue.pop() || {};
+		for(var i = 0; i< workers.length; ) {
+			if(!(workers[i].timeout--)){
+				var worker = workers[i];
+				if(i == workers.length -1) 
+					workers.pop();
+				else
+					workers[i] = workers.pop();
+				eventQueue.unshift(worker);
+			} else {
+				i++;
+			}
+		}
+	}
+	
+	function display() {
+		var res = [];
+		for(var i =0; i < workers.length; i++) {
+			res.push("<li>");
+			res.push(workers[i].val); res.push(" - "); res.push(workers[i].timeout);
+			res.push("</li>");
+		}
+		eworkers.innerHTML = res.join('');
+		
+		res = [];
+		for(var i =0; i < eventQueue.length; i++) {
+			res.push("<li>");
+			res.push(eventQueue[i].val);
+			res.push("</li>");
+		}
+		eeventqueue.innerHTML = res.join('');
+		console.log(eprocess.innerHTML = process.val||"");
+	}
+	etick.addEventListener("click", function () {
+		tick();
+		display();
+	});
+	elaunch.addEventListener("click", function () {
+		fireEvent();
+		display();
+	});
+	
+}());
+</script>
+</body>
+</html>
